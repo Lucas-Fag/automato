@@ -9,22 +9,21 @@ public class AutomatoAutentico {
     private Estado estadoInicial;
     private List<Estado> estadosFinais;
 
-    class Estado {
-        private List<String> entradas;
-        private Map<String, Estado> transicoes;
-        private String nome;
-        private boolean isFinal;
-    }
-
-    public AutomatoAutentico(List<Estado> estados) {
+    public AutomatoAutentico(List<Estado> estados, List<String> alfabeto, String estadoInicial) {
         this.estados = estados;
+        this.alfabeto = alfabeto;
 
-    }
+        for(Estado estado : estados) {
+            if (estado.isFinal()) {
+                this.estadosFinais.add(estado);
+            }
+
+            if (estado.getNome() == estadoInicial) {
+                this.estadoInicial = estado;
+            }
+        }
 
 
-    public AutomatoAutentico() {
-        this.estados = Arrays.asList("q1", "q2", "q3", "q4");
-        this.alfabeto = Arrays.asList("0", "1", "ε");
 
     }
 
